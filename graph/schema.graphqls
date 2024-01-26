@@ -1,0 +1,44 @@
+# GraphQL schema example
+#
+# https://gqlgen.com/getting-started/
+
+type User {
+  id: String!
+  email: String!
+  password: String!
+}
+
+type Deck {
+  id: String!
+  name: String!
+  userId: String!
+  dateCreated: String!
+  lastUpdate: String!
+  flashcards: [Cards!]
+}
+
+type Cards {
+  front: String!
+  back: String!
+}
+
+input CommentInput {
+  id: String!
+  userId: String!
+  comment: String!
+}
+
+type Comment {
+  id: String!
+  userId: String!
+  comment: String!
+}
+type Query {
+  getDeckByUser(userId: String!): [Deck!]
+  getSortedDeck(options: [String!]): [Deck!]
+  getUsers(email: String!, password: String!): User!
+}
+
+type Mutation {
+  createComment(input: CommentInput!): Comment!
+}
